@@ -6,9 +6,9 @@
   --grey: #30373d;
   --white: #f1f6fc;
 
-  --green: #238636;
-  --red: #da3634;
-  --blue: #2070eb;
+  --green: #2e9f43;
+  --red: #f85149;
+  --blue: #378bfd;
   --yellow: #d19922;
 
   --field-size: 500px;
@@ -59,29 +59,35 @@ header {
 .playfield {
   width: var(--field-size);
   height: var(--field-size);
-  border-radius: 50%;
-  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  /* transform: rotate(45deg); */
+}
+
+/* Color Buttons */
+.green {
+  background-color: var(--green);
+  border-top-left-radius: 100%;
+} 
+.red {
+  background-color: var(--red);
+  border-top-right-radius: 100%;
+}
+.blue {
+  background-color: var(--blue);
+  border-bottom-right-radius: 100%;
+}
+.yellow {
+  background-color: var(--yellow);
+  border-bottom-left-radius: 100%;
 }
 
 .btn {
   width: 100%;
   height: 100%;
-}
-
-.green {
-  background-color: var(--green);
-}
-.red {
-  background-color: var(--red);
-}
-.blue {
-  background-color: var(--blue);
-}
-.yellow {
-  background-color: var(--yellow);
+  transition: all 200ms ease-in-out;
 }
 
 .btn.active {
@@ -93,3 +99,6 @@ header {
   filter: brightness(50%);
 }
 
+.btn:active {
+  filter: brightness(200%);
+}
