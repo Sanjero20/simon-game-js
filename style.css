@@ -35,9 +35,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 header, footer {
+  width: 100vw;
   background-color: var(--dark-theme);
   color: white;
   padding: 10px 0;
@@ -52,4 +54,34 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.playfield {
+  width: 500px;
+  height: 500px;
+  border-radius: 40%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+}
+
+.green {
+  background-color: var(--darker-green);
+}
+.red {
+  background-color: var(--darker-red);
+}
+.blue {
+  background-color: var(--darker-blue);
+}
+.yellow {
+  background-color: var(--yellow);
 }
