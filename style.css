@@ -6,20 +6,20 @@
   --grey: #30373d;
   --white: #f1f6fc;
 
-  --green: #2e9f43;
-  --red: #f85149;
-  --blue: #378bfd;
+  --green: #238636;
+  --red: #da3634;
+  --blue: #2070eb;
   --yellow: #d19922;
 
-  --darker-green: #238636;
-  --darker-red: #da3634;
-  --darker-blue: #2070eb;
-  --darker-yellow: #bb800a;
+  --field-size: 500px;
+}
 
-  --blink-green: #57d365;
-  --blink-red: #ffa199;
-  --blink-blue: #79c0fe;
-  --blink-yellow: #f2cc61;
+@media (max-height: 800px) {
+  :root { --field-size: 300px }
+}
+
+@media (max-width: 768px) {
+ :root { --field-size: 250px } 
 }
 
 * {
@@ -57,31 +57,39 @@ header {
 }
 
 .playfield {
-  width: 500px;
-  height: 500px;
-  border-radius: 40%;
+  width: var(--field-size);
+  height: var(--field-size);
+  border-radius: 50%;
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  
 }
 
 .btn {
   width: 100%;
   height: 100%;
-  border: 1px solid white;
 }
 
 .green {
-  background-color: var(--darker-green);
+  background-color: var(--green);
 }
 .red {
-  background-color: var(--darker-red);
+  background-color: var(--red);
 }
 .blue {
-  background-color: var(--darker-blue);
+  background-color: var(--blue);
 }
 .yellow {
   background-color: var(--yellow);
 }
+
+.btn.active {
+  filter: brightness(150%);
+}
+
+.btn.game-over {
+  transition: 300ms ease-out;
+  filter: brightness(50%);
+}
+
