@@ -1,4 +1,4 @@
-const btns = document.querySelectorAll('.btn')
+const btns = document.querySelectorAll('.btn') // green, red, yellow, blue
 
 const greenSound = './audio/beep_green.ogg'
 const redSound = './audio/beep_red.ogg'
@@ -8,11 +8,12 @@ const yellowSound = './audio/beep_yellow.ogg'
 class ButtonColor {
   constructor(color, sound) {
     this.color = color;
-    this.sound = sound;
+    this.sound = new Audio(sound);
   }
 
   playSound() {
-    new Audio(this.sound).play();
+    this.sound.load();
+    this.sound.play();
   }
 }
 
@@ -21,11 +22,13 @@ const btnRed   = new ButtonColor('red', redSound);
 const btnBlue  = new ButtonColor('blue', blueSound);
 const btnYellow= new ButtonColor('yellow', yellowSound)
 
-const objButtons = [btnGreen, btnBlue, btnRed, btnYellow];
+const objButtons = [btnGreen, btnRed, btnYellow, btnBlue];
 
 btns.forEach((button, index) => {
   button.addEventListener('click', () => {
+    console.clear();
     objButtons[index].playSound();
+    console.log(objButtons[index].color);
   })
 })
 
