@@ -1,8 +1,8 @@
 const btns = document.querySelectorAll('.btn') // green, red, yellow, blue
 
-const greenSound = './audio/beep_green.ogg'
-const redSound = './audio/beep_red.ogg'
-const blueSound = './audio/beep_blue.ogg'
+const greenSound  = './audio/beep_green.ogg'
+const redSound    = './audio/beep_red.ogg'
+const blueSound   = './audio/beep_blue.ogg'
 const yellowSound = './audio/beep_yellow.ogg'
 
 class ButtonColor {
@@ -33,12 +33,20 @@ class Game {
   constructor(listOfButtons) {
     this.buttons = listOfButtons;
     this.choices = ['g', 'r', 'y', 'b']
-    this.sequence = ['g', 'r', 'r', 'b', 'y']
+    this.sequence = []
+    this.speed = 750 // milliseconds
   }
 
-  get nextSequence() {
-    return Math.floor(Math.random() * 4)
+  get randomSeq() {
+    let randomIndex = Math.floor(Math.random() * 4)
+    return this.choices[randomIndex]
   }
+
+  addToSequence() {
+    this.sequence.push(this.randomSeq)
+    console.log(this.sequence)
+  }
+
 
   playSequence() {
     this.sequence.forEach((seq, index) => {
@@ -76,11 +84,16 @@ class Game {
           return;
       }
       // buttons[index].color.click();
-    }, 1000 * index);
+    }, this.speed * index);
+  }
+
+  playRound() {
+    this.addToSequence()
+    this.playSequence()
   }
 
   playGame() {
-    this.playSequence()
+    this.playRound()
   }
 }
 
@@ -101,7 +114,7 @@ btns.forEach((button, index) => {
   })
 })
 
-const head = document.querySelector('header');
-head.onclick = () => {
+const demo = document.querySelector('.demo');
+demo.onclick = () => {
   play.playGame()
 }
