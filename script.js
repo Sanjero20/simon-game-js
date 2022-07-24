@@ -32,6 +32,7 @@ class ButtonColor {
 class ScoringSystem {
   constructor() {
     this.score = 0;
+    this.highScore;
   }
 
   addScore() {
@@ -40,7 +41,29 @@ class ScoringSystem {
   }
 
   updateScore() {
+    this.setHighScore()
     scoreDisplay.textContent = this.score
+    highScoreDisplay.textContent = this.highScore;
+  }
+
+  setHighScore() {
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      let convertedNum = this.highScore.toString()
+
+      localStorage.setItem("highscore", convertedNum);
+    }
+  }
+
+  gethighscore() {
+    let highscore = localStorage.getItem("highscore")
+    if (!highscore) {
+      this.highScore = 0;
+    } else {
+      this.highScore = Number(highscore)
+    }
+
+    this.updateScore();
   }
 }
 
@@ -182,6 +205,7 @@ class Game extends ScoringSystem{
   }
 
   playRound() {
+    this.gethighscore()
     this.addToSequence()
     this.playSequence()
     // wait for player input 
@@ -210,6 +234,7 @@ const btnYellow = new ButtonColor('yellow', yellowSound)
 const objButtons = [btnGreen, btnRed, btnYellow, btnBlue];
 
 const play = new Game(objButtons);
+play.gethighscore()
 
 const demo = document.querySelector('.demo');
 demo.onclick = () => {
