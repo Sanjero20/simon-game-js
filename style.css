@@ -12,14 +12,31 @@
   --yellow: #d19922;
 
   --field-size: 500px;
+  --playfield-size: calc(var(--field-size) + 100px);
+  --score-size: 1em;
 }
 
 @media (max-height: 800px) {
-  :root { --field-size: 300px }
+  :root { 
+    --field-size: 300px;
+    --score-size: 0.80em; 
+  }
+
 }
 
 @media (max-width: 768px) {
-  :root { --field-size: 250px } 
+  :root {
+    --field-size: 250px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --playfield-size: 75vw;
+  }
 }
 
 * {
@@ -51,8 +68,10 @@ header {
 }
 
 main {
+  width: var(--playfield-size);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
@@ -63,13 +82,21 @@ main {
 }
 
 .playfield {
+  background-color: var(--grey);
+  padding: 15px;
+  border-radius: 50%;
   width: var(--field-size);
   height: var(--field-size);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 5px;
-  /* transform: rotate(45deg); */
+  transition: 1000ms ease;
+}
+
+.playfield.game-over {
+  transform: rotate(45deg);
+  filter: brightness(50%);
 }
 
 /* Color Buttons */
@@ -107,8 +134,18 @@ main {
 }
 
 .scoreboard {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 0.65em;
+  font-size: var(--score-size);
   color: var(--white);
+}
+
+.start-game {
+  border-radius: 20px;
+  border: 0;
+  padding: 8px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: 300ms ease-in-out;
 }

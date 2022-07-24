@@ -1,3 +1,6 @@
+const playfield = document.querySelector('.playfield')
+const startBtn = document.querySelector('.start-game');
+
 const btns = document.querySelectorAll('.btn')
 const scoreDisplay = document.querySelector('.score span')
 const highScoreDisplay = document.querySelector('.highscore span')
@@ -82,7 +85,7 @@ class Game extends ScoringSystem{
     this.initEventListener();
 
     // Game Things
-    this.isGameOver = false;
+    this.isGameOver = true;
     this.gameOverAudio = new Audio(gameOverSound);
   }
 
@@ -185,6 +188,10 @@ class Game extends ScoringSystem{
     btns.forEach(btn => {
       btn.classList.add('game-over')
     })
+
+    playfield.classList.add('game-over')
+
+    startBtn.style['opacity'] = 1;
   }
 
   /* Game functions*/
@@ -197,6 +204,7 @@ class Game extends ScoringSystem{
     btns.forEach(btn => {
       btn.classList.remove('game-over')
     })
+    playfield.classList.remove('game-over')
   }
 
   resetTurn() {
@@ -236,7 +244,7 @@ const objButtons = [btnGreen, btnRed, btnYellow, btnBlue];
 const play = new Game(objButtons);
 play.gethighscore()
 
-const demo = document.querySelector('.demo');
-demo.onclick = () => {
+startBtn.onclick = () => {
   play.playGame()
+  startBtn.style['opacity'] = 0;
 }
