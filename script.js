@@ -91,7 +91,6 @@ class Game extends ScoringSystem{
 
   initEventListener() {
     /* Initialize button event listener*/
-    // Declared globally
     btns.forEach((btn, index) => {
       btn.addEventListener("click", () => {
         if (this.waitingForInput && !this.isGameOver) {
@@ -112,7 +111,6 @@ class Game extends ScoringSystem{
 
   addToSequence() {
     this.sequence.push(this.randomSeq)
-    console.log(this.sequence)
   }
 
   playSequence() {
@@ -156,8 +154,7 @@ class Game extends ScoringSystem{
 
   /* Player functions*/
   playerTurn(btnIndex) {
-    this.playerClicked = this.buttons[btnIndex].colorCode 
-    console.log(this.validateClick())
+    this.playerClicked = this.buttons[btnIndex].colorCode
 
     if (this.validateClick()) {
       if (this.playerIndex === this.sequence.length-1) {
@@ -190,8 +187,7 @@ class Game extends ScoringSystem{
     })
 
     playfield.classList.add('game-over')
-
-    startBtn.style['opacity'] = 1;
+    startBtn.classList.remove('hide');
   }
 
   /* Game functions*/
@@ -242,9 +238,9 @@ const btnYellow = new ButtonColor('yellow', yellowSound)
 const objButtons = [btnGreen, btnRed, btnYellow, btnBlue];
 
 const play = new Game(objButtons);
-play.gethighscore()
+play.gethighscore();
 
 startBtn.onclick = () => {
-  play.playGame()
-  startBtn.style['opacity'] = 0;
+  play.playGame();
+  startBtn.classList.add('hide');
 }
