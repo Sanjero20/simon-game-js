@@ -21,11 +21,10 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  overflow-x: hidden;
   background-color: var(--dark-grey);
   width: 100vw;
   height: 100vh;
@@ -35,7 +34,8 @@ body {
   align-items: center;
 }
 
-header, footer {
+header,
+footer {
   width: 100vw;
   background-color: var(--dark-theme);
   color: white;
@@ -64,7 +64,7 @@ main {
 }
 
 .playfield {
-  background-color: var(--grey); 
+  background-color: var(--grey);
   padding: 15px;
   border-radius: 50%;
   width: var(--field-size);
@@ -77,15 +77,14 @@ main {
 }
 
 .playfield.game-over {
-  transform: rotate(45deg) scale(0.75);
-  filter: brightness(50%);
+  filter: brightness(70%);
 }
 
 /* Color Buttons */
 #green {
   background-color: var(--green);
   border-top-left-radius: 100%;
-} 
+}
 #red {
   background-color: var(--red);
   border-top-right-radius: 100%;
@@ -141,9 +140,9 @@ main {
 }
 
 @media (max-height: 800px) {
-  :root { 
+  :root {
     --field-size: 300px;
-    --score-size: 0.80em; 
+    --score-size: 0.8em;
   }
 }
 
