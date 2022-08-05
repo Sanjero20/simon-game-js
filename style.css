@@ -111,7 +111,7 @@ main {
 
 .btn.game-over {
   transition: 1000ms ease-out;
-  filter: brightness(50%);
+  filter: brightness(70%);
 }
 
 .scoreboard {
